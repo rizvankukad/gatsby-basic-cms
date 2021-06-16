@@ -24,7 +24,7 @@ const BlogPostTemplate = ({ data, location }) => {
       >
         <header>
           <h1 itemProp="headline">{post.Title}</h1>
-          <p>{post.createdAt}</p>
+          <p>{post.created_at}</p>
         </header>
         {/* <section
           dangerouslySetInnerHTML={{ __html: post.html }}
@@ -53,7 +53,7 @@ export const pageQuery = graphql`
       id
       Title
       Content
-      createdAt
+      created_at
     }
   }
 `

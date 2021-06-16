@@ -44,7 +44,7 @@ console.log({ posts });
                       <span itemProp="headline">{title}</span>
                     </Link>
                   </h2>
-                  <small>{post.node.createdAt}</small>
+                  <small>{post.node.created_at}</small>
                 </header>
                 <section>
                   <p
@@ -79,7 +79,7 @@ export const pageQuery = graphql`
           Title
           Slug
           Description
-          createdAt
+          created_at
         }
       }
     }

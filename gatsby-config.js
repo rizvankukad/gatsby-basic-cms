@@ -129,10 +129,10 @@ module.exports = {
     {
       resolve: 'gatsby-source-strapi',
       options: {
-        apiURL: 'http://localhost:1337',
+        apiURL: 'https://rizvan-strapi-cms.herokuapp.com',
         collectionTypes: [ // List of the Content Types you want to be able to request from Gatsby.
           'articles',
-          'user'
+          'comments'
         ],
         queryLimit: 1000,
         loginData: {
