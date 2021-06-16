@@ -1,21 +1,20 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 import ReactMarkdown from 'react-markdown'
+import moment from 'moment'
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 const BlogPostTemplate = ({ data, location }) => {
-  console.log({data});
   const post = data.strapiArticles
-  const siteTitle = data.strapiArticles?.Title || `Title`
+  const siteTitle = data.site.siteMetadata?.title || `Title`
 
   return (
     <Layout location={location} title={siteTitle}>
       <Seo
         title={post.Title}
-        description={'TODO:// Add Description here'}
+        description={post.Description}
       />
       <article
         className="blog-post"
@@ -24,7 +23,7 @@ const BlogPostTemplate = ({ data, location }) => {
       >
         <header>
           <h1 itemProp="headline">{post.Title}</h1>
-          <p>{post.created_at}</p>
+          <p>{moment(post.created_at).format("Do MMMM YYYY")}</p>
         </header>
         {/* <section
           dangerouslySetInnerHTML={{ __html: post.html }}
@@ -35,10 +34,6 @@ const BlogPostTemplate = ({ data, location }) => {
             {post.Content}
           </ReactMarkdown>
         </section>
-        <hr />
-        <footer>
-          <Bio />
-        </footer>
       </article>
       
     </Layout>
@@ -49,10 +44,16 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query GetArticleBySlug( $id: String ) {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     strapiArticles(id: {eq: $id}) {
       id
       Title
       Content
+      Description
       created_at
     }
   }
